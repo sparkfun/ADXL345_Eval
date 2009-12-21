@@ -1,0 +1,358 @@
+   1               		.file	"ADXL345.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	adxl345_hw_setup
+  18               	adxl345_hw_setup:
+  19               	.LFB3:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 87B1      		in r24,39-32
+  25 0002 8760      		ori r24,lo8(7)
+  26 0004 87B9      		out 39-32,r24
+  27               	.LM3:
+  28 0006 439A      		sbi 40-32,3
+  29               	.LM4:
+  30 0008 3B98      		cbi 39-32,3
+  31               	.LM5:
+  32 000a 8AB1      		in r24,42-32
+  33 000c 837F      		andi r24,lo8(-13)
+  34 000e 8AB9      		out 42-32,r24
+  35               	.LM6:
+  36 0010 8BB1      		in r24,43-32
+  37 0012 8C60      		ori r24,lo8(12)
+  38 0014 8BB9      		out 43-32,r24
+  39               	/* epilogue start */
+  40               	.LM7:
+  41 0016 0895      		ret
+  42               	.LFE3:
+  44               	.global	adxl345_write
+  46               	adxl345_write:
+  47               	.LFB6:
+  48               	.LM8:
+  49               	.LVL0:
+  50 0018 DF92      		push r13
+  51 001a EF92      		push r14
+  52 001c FF92      		push r15
+  53 001e 0F93      		push r16
+  54 0020 1F93      		push r17
+  55 0022 CF93      		push r28
+  56 0024 DF93      		push r29
+  57               	/* prologue: function */
+  58               	/* frame size = 0 */
+  59 0026 D62E      		mov r13,r22
+  60               	.LM9:
+  61 0028 419A      		sbi 40-32,1
+  62               	.LM10:
+  63 002a 4098      		cbi 40-32,0
+  64 002c C7E0      		ldi r28,lo8(7)
+  65 002e D0E0      		ldi r29,hi8(7)
+  66               	.LVL1:
+  67               	.LBB2:
+  68               	.LM11:
+  69 0030 91E0      		ldi r25,lo8(1)
+  70 0032 E92E      		mov r14,r25
+  71 0034 F12C      		mov r15,__zero_reg__
+  72 0036 082F      		mov r16,r24
+  73 0038 10E0      		ldi r17,lo8(0)
+  74               	.LVL2:
+  75               	.L6:
+  76               	.LM12:
+  77 003a 4198      		cbi 40-32,1
+  78               	.LM13:
+  79 003c 9701      		movw r18,r14
+  80 003e 0C2E      		mov r0,r28
+  81 0040 00C0      		rjmp 2f
+  82 0042 220F      	1:	lsl r18
+  83 0044 331F      		rol r19
+  84 0046 0A94      	2:	dec r0
+  85 0048 02F4      		brpl 1b
+  86 004a C901      		movw r24,r18
+  87 004c 8023      		and r24,r16
+  88 004e 9123      		and r25,r17
+  89 0050 8217      		cp r24,r18
+  90 0052 9307      		cpc r25,r19
+  91 0054 01F4      		brne .L4
+  92 0056 429A      		sbi 40-32,2
+  93 0058 00C0      		rjmp .L5
+  94               	.L4:
+  95               	.LM14:
+  96 005a 4298      		cbi 40-32,2
+  97               	.L5:
+  98               	.LM15:
+  99 005c 81E0      		ldi r24,lo8(1)
+ 100 005e 90E0      		ldi r25,hi8(1)
+ 101 0060 0E94 0000 		call delay_us
+ 102               	.LM16:
+ 103 0064 419A      		sbi 40-32,1
+ 104               	.LM17:
+ 105 0066 81E0      		ldi r24,lo8(1)
+ 106 0068 90E0      		ldi r25,hi8(1)
+ 107 006a 0E94 0000 		call delay_us
+ 108               	.LM18:
+ 109 006e 2197      		sbiw r28,1
+ 110 0070 8FEF      		ldi r24,hi8(-1)
+ 111 0072 CF3F      		cpi r28,lo8(-1)
+ 112 0074 D807      		cpc r29,r24
+ 113 0076 01F4      		brne .L6
+ 114 0078 C7E0      		ldi r28,lo8(7)
+ 115 007a D0E0      		ldi r29,hi8(7)
+ 116               	.LVL3:
+ 117               	.LBE2:
+ 118               	.LBB3:
+ 119               	.LM19:
+ 120 007c 81E0      		ldi r24,lo8(1)
+ 121 007e E82E      		mov r14,r24
+ 122 0080 F12C      		mov r15,__zero_reg__
+ 123 0082 0D2D      		mov r16,r13
+ 124               	.LVL4:
+ 125 0084 10E0      		ldi r17,lo8(0)
+ 126               	.LVL5:
+ 127               	.L9:
+ 128               	.LM20:
+ 129 0086 4198      		cbi 40-32,1
+ 130               	.LM21:
+ 131 0088 9701      		movw r18,r14
+ 132 008a 0C2E      		mov r0,r28
+ 133 008c 00C0      		rjmp 2f
+ 134 008e 220F      	1:	lsl r18
+ 135 0090 331F      		rol r19
+ 136 0092 0A94      	2:	dec r0
+ 137 0094 02F4      		brpl 1b
+ 138 0096 C901      		movw r24,r18
+ 139 0098 8023      		and r24,r16
+ 140 009a 9123      		and r25,r17
+ 141 009c 8217      		cp r24,r18
+ 142 009e 9307      		cpc r25,r19
+ 143 00a0 01F4      		brne .L7
+ 144 00a2 429A      		sbi 40-32,2
+ 145 00a4 00C0      		rjmp .L8
+ 146               	.L7:
+ 147               	.LM22:
+ 148 00a6 4298      		cbi 40-32,2
+ 149               	.L8:
+ 150               	.LM23:
+ 151 00a8 81E0      		ldi r24,lo8(1)
+ 152 00aa 90E0      		ldi r25,hi8(1)
+ 153 00ac 0E94 0000 		call delay_us
+ 154               	.LM24:
+ 155 00b0 419A      		sbi 40-32,1
+ 156               	.LM25:
+ 157 00b2 81E0      		ldi r24,lo8(1)
+ 158 00b4 90E0      		ldi r25,hi8(1)
+ 159 00b6 0E94 0000 		call delay_us
+ 160               	.LM26:
+ 161 00ba 2197      		sbiw r28,1
+ 162 00bc 8FEF      		ldi r24,hi8(-1)
+ 163 00be CF3F      		cpi r28,lo8(-1)
+ 164 00c0 D807      		cpc r29,r24
+ 165 00c2 01F4      		brne .L9
+ 166               	.LBE3:
+ 167               	.LM27:
+ 168 00c4 409A      		sbi 40-32,0
+ 169               	/* epilogue start */
+ 170               	.LM28:
+ 171 00c6 DF91      		pop r29
+ 172 00c8 CF91      		pop r28
+ 173               	.LVL6:
+ 174 00ca 1F91      		pop r17
+ 175               	.LVL7:
+ 176 00cc 0F91      		pop r16
+ 177               	.LVL8:
+ 178 00ce FF90      		pop r15
+ 179 00d0 EF90      		pop r14
+ 180 00d2 DF90      		pop r13
+ 181               	.LVL9:
+ 182 00d4 0895      		ret
+ 183               	.LFE6:
+ 185               	.global	adxl345_defaults
+ 187               	adxl345_defaults:
+ 188               	.LFB4:
+ 189               	.LM29:
+ 190               	/* prologue: function */
+ 191               	/* frame size = 0 */
+ 192               	.LM30:
+ 193 00d6 81E3      		ldi r24,lo8(49)
+ 194 00d8 60E2      		ldi r22,lo8(32)
+ 195 00da 0E94 0000 		call adxl345_write
+ 196               	.LM31:
+ 197 00de 8EE2      		ldi r24,lo8(46)
+ 198 00e0 60E8      		ldi r22,lo8(-128)
+ 199 00e2 0E94 0000 		call adxl345_write
+ 200               	.LM32:
+ 201 00e6 8FE2      		ldi r24,lo8(47)
+ 202 00e8 60E0      		ldi r22,lo8(0)
+ 203 00ea 0E94 0000 		call adxl345_write
+ 204               	.LM33:
+ 205 00ee 8CE2      		ldi r24,lo8(44)
+ 206 00f0 6AE0      		ldi r22,lo8(10)
+ 207 00f2 0E94 0000 		call adxl345_write
+ 208               	.LM34:
+ 209 00f6 8DE2      		ldi r24,lo8(45)
+ 210 00f8 68E0      		ldi r22,lo8(8)
+ 211 00fa 0E94 0000 		call adxl345_write
+ 212               	/* epilogue start */
+ 213               	.LM35:
+ 214 00fe 0895      		ret
+ 215               	.LFE4:
+ 217               	.global	adxl345_read
+ 219               	adxl345_read:
+ 220               	.LFB5:
+ 221               	.LM36:
+ 222               	.LVL10:
+ 223 0100 EF92      		push r14
+ 224 0102 FF92      		push r15
+ 225 0104 0F93      		push r16
+ 226 0106 1F93      		push r17
+ 227 0108 CF93      		push r28
+ 228 010a DF93      		push r29
+ 229               	/* prologue: function */
+ 230               	/* frame size = 0 */
+ 231               	.LM37:
+ 232 010c 8068      		ori r24,lo8(-128)
+ 233               	.LVL11:
+ 234               	.LM38:
+ 235 010e 419A      		sbi 40-32,1
+ 236               	.LM39:
+ 237 0110 4098      		cbi 40-32,0
+ 238 0112 C7E0      		ldi r28,lo8(7)
+ 239 0114 D0E0      		ldi r29,hi8(7)
+ 240               	.LVL12:
+ 241               	.LBB4:
+ 242               	.LM40:
+ 243 0116 21E0      		ldi r18,lo8(1)
+ 244 0118 E22E      		mov r14,r18
+ 245 011a F12C      		mov r15,__zero_reg__
+ 246 011c 082F      		mov r16,r24
+ 247 011e 10E0      		ldi r17,lo8(0)
+ 248               	.LVL13:
+ 249               	.L18:
+ 250               	.LM41:
+ 251 0120 4198      		cbi 40-32,1
+ 252               	.LM42:
+ 253 0122 9701      		movw r18,r14
+ 254 0124 0C2E      		mov r0,r28
+ 255 0126 00C0      		rjmp 2f
+ 256 0128 220F      	1:	lsl r18
+ 257 012a 331F      		rol r19
+ 258 012c 0A94      	2:	dec r0
+ 259 012e 02F4      		brpl 1b
+ 260 0130 C901      		movw r24,r18
+ 261 0132 8023      		and r24,r16
+ 262 0134 9123      		and r25,r17
+ 263 0136 8217      		cp r24,r18
+ 264 0138 9307      		cpc r25,r19
+ 265 013a 01F4      		brne .L16
+ 266 013c 429A      		sbi 40-32,2
+ 267 013e 00C0      		rjmp .L17
+ 268               	.L16:
+ 269               	.LM43:
+ 270 0140 4298      		cbi 40-32,2
+ 271               	.L17:
+ 272               	.LM44:
+ 273 0142 81E0      		ldi r24,lo8(1)
+ 274 0144 90E0      		ldi r25,hi8(1)
+ 275 0146 0E94 0000 		call delay_us
+ 276               	.LM45:
+ 277 014a 419A      		sbi 40-32,1
+ 278               	.LM46:
+ 279 014c 81E0      		ldi r24,lo8(1)
+ 280 014e 90E0      		ldi r25,hi8(1)
+ 281 0150 0E94 0000 		call delay_us
+ 282               	.LM47:
+ 283 0154 2197      		sbiw r28,1
+ 284 0156 8FEF      		ldi r24,hi8(-1)
+ 285 0158 CF3F      		cpi r28,lo8(-1)
+ 286 015a D807      		cpc r29,r24
+ 287 015c 01F4      		brne .L18
+ 288 015e C7E0      		ldi r28,lo8(7)
+ 289 0160 D0E0      		ldi r29,hi8(7)
+ 290               	.LVL14:
+ 291 0162 10E0      		ldi r17,lo8(0)
+ 292               	.LVL15:
+ 293               	.L21:
+ 294               	.LBE4:
+ 295               	.LBB5:
+ 296               	.LM48:
+ 297 0164 4198      		cbi 40-32,1
+ 298               	.LM49:
+ 299 0166 81E0      		ldi r24,lo8(1)
+ 300 0168 90E0      		ldi r25,hi8(1)
+ 301 016a 0E94 0000 		call delay_us
+ 302               	.LM50:
+ 303 016e 419A      		sbi 40-32,1
+ 304               	.LM51:
+ 305 0170 81E0      		ldi r24,lo8(1)
+ 306 0172 90E0      		ldi r25,hi8(1)
+ 307 0174 0E94 0000 		call delay_us
+ 308               	.LM52:
+ 309 0178 339B      		sbis 38-32,3
+ 310 017a 00C0      		rjmp .L19
+ 311 017c 81E0      		ldi r24,lo8(1)
+ 312 017e 90E0      		ldi r25,hi8(1)
+ 313 0180 0C2E      		mov r0,r28
+ 314 0182 00C0      		rjmp 2f
+ 315 0184 880F      	1:	lsl r24
+ 316 0186 991F      		rol r25
+ 317 0188 0A94      	2:	dec r0
+ 318 018a 02F4      		brpl 1b
+ 319 018c 182B      		or r17,r24
+ 320 018e 00C0      		rjmp .L20
+ 321               	.L19:
+ 322               	.LM53:
+ 323 0190 81E0      		ldi r24,lo8(1)
+ 324 0192 90E0      		ldi r25,hi8(1)
+ 325 0194 0C2E      		mov r0,r28
+ 326 0196 00C0      		rjmp 2f
+ 327 0198 880F      	1:	lsl r24
+ 328 019a 991F      		rol r25
+ 329 019c 0A94      	2:	dec r0
+ 330 019e 02F4      		brpl 1b
+ 331 01a0 8095      		com r24
+ 332 01a2 1823      		and r17,r24
+ 333               	.L20:
+ 334               	.LM54:
+ 335 01a4 2197      		sbiw r28,1
+ 336 01a6 8FEF      		ldi r24,hi8(-1)
+ 337 01a8 CF3F      		cpi r28,lo8(-1)
+ 338 01aa D807      		cpc r29,r24
+ 339 01ac 01F4      		brne .L21
+ 340               	.LBE5:
+ 341               	.LM55:
+ 342 01ae 409A      		sbi 40-32,0
+ 343               	.LM56:
+ 344 01b0 812F      		mov r24,r17
+ 345               	/* epilogue start */
+ 346 01b2 DF91      		pop r29
+ 347 01b4 CF91      		pop r28
+ 348               	.LVL16:
+ 349 01b6 1F91      		pop r17
+ 350               	.LVL17:
+ 351 01b8 0F91      		pop r16
+ 352               	.LVL18:
+ 353 01ba FF90      		pop r15
+ 354 01bc EF90      		pop r14
+ 355 01be 0895      		ret
+ 356               	.LFE5:
+ 406               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 ADXL345.c
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:18     .text:00000000 adxl345_hw_setup
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:46     .text:00000018 adxl345_write
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:187    .text:000000d6 adxl345_defaults
+C:\DOCUME~1\Ryan\LOCALS~1\Temp/cc67YtIa.s:219    .text:00000100 adxl345_read
+
+UNDEFINED SYMBOLS
+delay_us
