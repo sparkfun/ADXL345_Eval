@@ -1,7 +1,7 @@
 ADXL345 Evaluation Board
 ========================
-[![ADXL345 Evaluation Board](https://dlnmh9ip6v2uc.cloudfront.net/images/products/9/8/1/4/09814-01.jpg) 
-*ADXL345 Evaluation Board(SEN-09814)*](https://www.sparkfun.com/products/9814)
+[![ADXL345 Evaluation Board](https://dlnmh9ip6v2uc.cloudfront.net/images/products/9/8/1/4/09814-01.jpg)  
+*ADXL345 Evaluation Board (SEN-09814)*](https://www.sparkfun.com/products/9814)
 
 The ADXL Evaluation Board is an accelerometer capable of up to +/- 16g at up to 13-bit resolution, combined with a data logger and ATMega328 for onboard processing.
 
